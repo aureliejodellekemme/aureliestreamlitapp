@@ -4,7 +4,4 @@ folium
 geopandas
 streamlit
 streamlit_folium
-folium_static
-MeasureControl
-plugins
-st_folium
+folium.plugins
