@@ -36,7 +36,7 @@ def main():
     st.metric(metric_title, rwd_per_disease_pr)
 
     # Create a map
-    map = folium.Map(location=[-0.9437057, 31.8805778], zoom_start=9, control_scale=True)
+    map = folium.Map(location=[-1.9437057, 29.8805778], zoom_start=9, control_scale=True)
     plugins.Fullscreen(position='topright').add_to(map)
 
     # Create a GeoJson layer for the sectors
