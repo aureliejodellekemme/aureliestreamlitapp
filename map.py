@@ -9,24 +9,6 @@ from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
 import git_lfs
 #st.cache_data
-import subprocess
-# Replace 'geo_data1.shp' with the actual filename
-lfs_file_path = 'geo_data1.shp'
-# Fetch the LFS file using Git LFS
-subprocess.run(['git', 'lfs', 'fetch', '--include', lfs_file_path])
-
-# Check if the LFS file was successfully downloaded
-# The 'git lfs ls-files' command should list the file with an 'O' (object) status
-ls_files_output = subprocess.run(['git', 'lfs', 'ls-files'], capture_output=True, text=True).stdout
-if f"{lfs_file_path} (Object) - " in ls_files_output:
-    # Now you can work with the file as needed (e.g., read the shapefile using geopandas)
-    shape_file_sectors = gpd.read_file(lfs_file_path)
-
-    # Now you can work with the geopandas GeoDataFrame (gdf) as needed
-    #print(gdf.head())
-else:
-    print(f"The LFS file '{lfs_file_path}' is not tracked or not available.")
-
 shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
