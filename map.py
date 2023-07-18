@@ -7,7 +7,15 @@ warnings.filterwarnings('ignore')
 from folium import plugins
 from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
+import git_lfs
 #st.cache_data
+lfs_file_path = 'geo_data1.shp'
+# Check if the LFS file is available locally
+if git_lfs.is_tracked(lfs_file_path):
+    # Download the LFS file
+    git_lfs.fetch(lfs_file_path)
+else:
+    print(f"The LFS file '{lfs_file_path}' is not tracked or not available.")
 shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
