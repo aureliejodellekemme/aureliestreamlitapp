@@ -9,7 +9,26 @@ from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
 import git_lfs
 #st.cache_data
-shape_file_sectors = gpd.read_file('geo_data1.shp')
+import requests
+
+# Replace the raw URL with the raw URL of your Git LFS-tracked file on GitHub
+raw_file_url = "https://raw.githubusercontent.com/aureliejodellekemme/aureliestreamlitapp/main/geo_data1.shp"
+
+# Fetch the file content from the raw URL
+response = requests.get(raw_file_url)
+
+# Save the content to a local file (optional)
+# Only do this step if you want to save the file locally for further use
+with open("geo_data1.shp", "wb") as f:
+    f.write(response.content)
+
+# Read the shapefile using geopandas
+shape_file_sectors = gpd.read_file(response.content)
+
+# Now you can work with the geopandas GeoDataFrame (gdf) as needed
+print(gdf.head())
+
+#shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
 def main():
