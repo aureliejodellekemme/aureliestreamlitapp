@@ -26,7 +26,7 @@ with open("geo_data1.shp", "wb") as f:
 shape_file_sectors = gpd.read_file(response.content)
 
 # Now you can work with the geopandas GeoDataFrame (gdf) as needed
-print(gdf.head())
+#print(gdf.head())
 
 #shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
