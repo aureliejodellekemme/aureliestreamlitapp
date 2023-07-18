@@ -16,14 +16,12 @@ raw_file_url = "https://raw.githubusercontent.com/aureliejodellekemme/aureliestr
 
 # Fetch the file content from the raw URL
 response = requests.get(raw_file_url)
-
-# Save the content to a local file (optional)
-# Only do this step if you want to save the file locally for further use
-with open("geo_data1.shp", "wb") as f:
-    f.write(response.content)
-
-# Read the shapefile using geopandas
-shape_file_sectors = gpd.read_file(response.content)
+if response.status_code == 200:
+    # Read the shapefile using geopandas directly from the content
+    shape_file_sectors = gpd.read_file(response.content)
+else:
+    print(f"Failed to fetch the LFS shapefile. Status code: {response.status_code}")
+#shape_file_sectors = gpd.read_file(response.content)
 
 # Now you can work with the geopandas GeoDataFrame (gdf) as needed
 #print(gdf.head())
