@@ -7,7 +7,7 @@ warnings.filterwarnings('ignore')
 from folium import plugins
 from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
-import git_lfs
+#import git_lfs
 #st.cache_data
 # import requests
 
