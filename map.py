@@ -26,7 +26,7 @@ import git_lfs
 # # Now you can work with the geopandas GeoDataFrame (gdf) as needed
 # #print(gdf.head())
 
-shape_file_sectors = gpd.read_file("../.git/lfs/geo_data.shp")
+shape_file_sectors = gpd.read_file("geo_data.shp")
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
 def main():
