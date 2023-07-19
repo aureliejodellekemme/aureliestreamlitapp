@@ -9,24 +9,24 @@ from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
 import git_lfs
 #st.cache_data
-import requests
+# import requests
 
-# Replace the raw URL with the raw URL of your Git LFS-tracked file on GitHub
-raw_file_url = "https://raw.githubusercontent.com/aureliejodellekemme/aureliestreamlitapp/main/geo_data1.shp"
+# # Replace the raw URL with the raw URL of your Git LFS-tracked file on GitHub
+# raw_file_url = "https://raw.githubusercontent.com/aureliejodellekemme/aureliestreamlitapp/main/geo_data1.shp"
 
-# Fetch the file content from the raw URL
-response = requests.get(raw_file_url)
-if response.status_code == 200:
-    # Read the shapefile using geopandas directly from the content
-    shape_file_sectors = gpd.read_file(response.content)
-else:
-    print(f"Failed to fetch the LFS shapefile. Status code: {response.status_code}")
-#shape_file_sectors = gpd.read_file(response.content)
+# # Fetch the file content from the raw URL
+# response = requests.get(raw_file_url)
+# if response.status_code == 200:
+#     # Read the shapefile using geopandas directly from the content
+#     shape_file_sectors = gpd.read_file(response.content)
+# else:
+#     print(f"Failed to fetch the LFS shapefile. Status code: {response.status_code}")
+# #shape_file_sectors = gpd.read_file(response.content)
 
-# Now you can work with the geopandas GeoDataFrame (gdf) as needed
-#print(gdf.head())
+# # Now you can work with the geopandas GeoDataFrame (gdf) as needed
+# #print(gdf.head())
 
-#shape_file_sectors = gpd.read_file('geo_data1.shp')
+shape_file_sectors = gpd.read_file("../.git/lfs/geo_data1.shp")
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
 def main():
