@@ -9,7 +9,9 @@ from folium.plugins import MeasureControl
 from streamlit_folium import folium_static, st_folium
 #import git_lfs
 #st.cache_data
-shape_file_sectors = gpd.read_file('geodata.shp')
+import subprocess
+shape_file_sectors = subprocess.run(['git', 'lfs', 'ls-files', 'geo_data1.shp'])
+#shape_file_sectors = gpd.read_file('geodata.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
 def main():
