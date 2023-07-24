@@ -10,20 +10,8 @@ from streamlit_folium import folium_static, st_folium
 #import git_lfs
 #st.cache_data
 import subprocess
-subprocess.run(['git', 'lfs', 'ls-files', 'geo_data1.shp','geo_data1.cpg','geo_data1.dbf','geo_data1.prj','geo_data1.shx'])
-import fiona
-from contextlib import contextmanager
-
-# Define a context manager to set the configuration option
-@contextmanager
-def fiona_env():
-    with fiona.Env():
-        fiona.env['SHAPE_RESTORE_SHX'] = 'YES'
-        yield
-# Read the shapefile using GeoPandas within the fiona_env context
-with fiona_env():
-    shape_file_sectors = gpd.read_file('geo_data1.shp')
-#shape_file_sectors = gpd.read_file('geo_data1.shp')
+subprocess.run(['git', 'lfs', 'ls-files', 'geo_data1.shp'])
+shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
 def main():
