@@ -5,4 +5,5 @@ geopandas
 streamlit
 streamlit_folium
 git_lfs
+fiona
 #subprocess
