@@ -10,7 +10,7 @@ from streamlit_folium import folium_static, st_folium
 #import git_lfs
 #st.cache_data
 import subprocess
-subprocess.run(['git', 'lfs', 'ls-files', 'geo_data1.shp'])
+subprocess.run(['git', 'lfs', 'ls-files', 'geo_data1.shp','geo_data1.cpg','geo_data1.dbf','geo_data1.prj','geo_data1.shx'])
 shape_file_sectors = gpd.read_file('geo_data1.shp')
 shape_file_sectors=shape_file_sectors.rename(columns={'NOMBER OF':'NOMBER OF CASES','Total':'Population','Disease_Pr':'Disease Prevalence(%)'})
 df = shape_file_sectors
