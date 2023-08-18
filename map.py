@@ -3,9 +3,12 @@ from folium import plugins
 from streamlit_folium import folium_static
 from folium.plugins import MarkerCluster
 import base64
-geo_data_path = '../data/manual/geo_data1.shp'
+#geo_data_path = '../data/manual/geo_data1.shp'
 rbc_data_path = '../data/manual/rbc.shp'
 hf_location_path = '../data/manual/hf_location.xlsx'
+
+# Replace with the actual direct link to your Google Drive shapefile
+file_url = "https://drive.google.com/file/d/1WtTLzqQbKupHZnnciXk8HBTPpEc-58M3/view?usp=drive_link"
 st.cache_data.clear()
 @st.cache_data()
 # def get_base64_of_bin_file(bin_file):
@@ -29,11 +32,16 @@ st.cache_data.clear()
 
 #set_png_as_page_bg('background.png')
 def load_data():
-    df = gpd.read_file(geo_data_path).rename(columns={
+    df = gpd.read_file(file_url).rename(columns={
         'NOMBER OF': 'NOMBER OF CASES',
         'Total': 'Population',
         'Disease_Pr': 'Disease Prevalence(%)'
     })
+    #df = gpd.read_file(geo_data_path).rename(columns={
+       # 'NOMBER OF': 'NOMBER OF CASES',
+       # 'Total': 'Population',
+       # 'Disease_Pr': 'Disease Prevalence(%)'
+   # })
     rbc_data = gpd.read_file(rbc_data_path)
     location_data = pd.read_excel(hf_location_path)
     return df, rbc_data, location_data.dropna()
